@@ -4,26 +4,31 @@
 // The result of the roll is subtracted from the initial chosen number.
 // If the result ends up to be 0, then the player "wins" the game.
 // If it's less than 0, then he "loses" the game...
+
 let numberToBeat = Math.floor (Math.random() * 50) + 50;
 
-while ((numberToBeat - roll) > 0)  {
-    function rollDie (numberOfSides) {
-        numberOfSides = prompt ("Please Enter Number of Sides for your die");
-        let roll = Math.floor (Math.random () * numberOfSides) + 1;
-        numberToBeat -= roll;
+while (numberToBeat > 0)  { 
+    console.log ("Number to Beat : " + numberToBeat);
+    let numberOfSides;
+    numberOfSides = prompt ("Please Enter Number of Sides for your die");
+    console.log (numberOfSides + " sided die was used");
+    rollDie (numberOfSides);
+    function rollDie (sidesOfDie) {       
+        let roll = Math.floor (Math.random () * sidesOfDie) + 1;
+        console.log ("Die roll : " + roll);       
+        return numberToBeat -= roll;
     }
 }
 
-if (numberToBeat =0) {
-    console.log ("WINNER!!!");
+if (numberToBeat < 0) {
+    console.log ("Sorry, you lose.");
 }
 else {
-    console.log ("Sorry, you lose...");
+    console.log ("Congrats, you WIN!!!");
+    console.log (numberToBeat);
 }
 
 
-let roll = rollDie (numberOfSides);
-
-console.log (numberToBeat);
-console.log (roll);
+// console.log (numberToBeat);
+// console.log (roll);
 
