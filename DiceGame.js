@@ -7,6 +7,34 @@
 // If it's less than 0, then he "loses" the game...
 
 let numberToBeat = Math.floor (Math.random() * 50) + 50;
+let count = 0;
+
+function colorLog(message, color) {
+
+    color = color || "black";
+
+    switch (color) {
+        case "win":  
+             color = "Gold";
+             break;
+        case "lose":   
+             color = "Red";
+             break;
+        case "roll die":  
+             color = "Blue";
+             break;
+        case "beatnumber":  
+             color = "FireBrick";
+             break;
+        case "invalidnumber":  
+             color = "Crimson";
+             break;
+        default: 
+             color = color;
+    }
+
+    console.log("%c" + message, "color:" + color);
+}
 
 function getInput(){
     let isValid = false;
@@ -17,29 +45,29 @@ function getInput(){
             return input;
         }
         else 
-        { console.log ("Please enter the correct die")
-        };
+        { colorLog ("          PLEASE ENTER THE CORRECT DIE", "invalidnumber");
+        }
     }
  }
 
 while (numberToBeat > 0)  { 
-    console.log ("Number to Beat : " + numberToBeat);
-    let numberOfSides;
-    // numberOfSides = prompt ("Please Enter Number of Sides for your die");
+    colorLog ("Number to Beat : " + numberToBeat, "beatnumber");
+    count++;
+    let numberOfSides; 
     numberOfSides = getInput();
-    console.log (numberOfSides + " sided die was used");
+    colorLog ("    " + numberOfSides + " sided die was used", "roll die");
     rollDie (numberOfSides);
+
     function rollDie (sidesOfDie) {       
         let roll = Math.floor (Math.random () * sidesOfDie) + 1;
-        console.log ("Die roll : " + roll);       
+        console.log ("    Die roll : " + roll);       
         return numberToBeat -= roll;
     }
 }
 
 if (numberToBeat < 0) {
-    console.log ("Sorry, you lose.");
+    colorLog ("        Sorry, you lose after " + count + " tries...", "lose");
 }
 else {
-    console.log ("Congrats, you WIN!!!");
-    console.log (numberToBeat);
+    colorLog ("        Congrats, you WIN " + "in " + count + " tries!!!", "win");
 }
