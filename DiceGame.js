@@ -3,15 +3,13 @@
 // The player can choose to roll any of the dice, either 4, 6, 8, 10, 12 or 20. 
 // If number entered is none of the above, player will be re-prompted. 
 // The result of the roll is subtracted from the initial chosen number.
+// If result is > 0, then he's prompted to roll another die.
 // If the result ends up to be 0, then the player "wins" the game.
 // If it's less than 0, then he "loses" the game...
 
-// let numberToBeat = Math.floor (Math.random() * 50) + 50;
-// let count = 0;
-
 playDiceGame();
 
-function getInput(){
+function getInput() {
     let isValid = false;
     while(!isValid){
         let input = prompt("Please pick your die, either 4, 6, 8, 10, 12 or 20 : ");
@@ -28,7 +26,6 @@ function getInput(){
  function rollDie (sidesOfDie) {       
     let roll = Math.floor (Math.random () * sidesOfDie) + 1;
     console.log ("    Die roll : " + roll);       
-    // return numberToBeat -= roll;
     return roll;
 }
 
