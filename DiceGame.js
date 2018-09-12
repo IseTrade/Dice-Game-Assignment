@@ -6,8 +6,54 @@
 // If the result ends up to be 0, then the player "wins" the game.
 // If it's less than 0, then he "loses" the game...
 
-let numberToBeat = Math.floor (Math.random() * 50) + 50;
-let count = 0;
+// let numberToBeat = Math.floor (Math.random() * 50) + 50;
+// let count = 0;
+
+playDiceGame();
+
+function getInput(){
+    let isValid = false;
+    while(!isValid){
+        let input = prompt("Please pick your die, either 4, 6, 8, 10, 12 or 20 : ");
+        if(input === "4" || input === "6" || input === "8" || input === "10" || input === "12" || input === "20"){
+            isValid = true;
+            return input;
+        }
+        else { 
+            colorLog ("          PLEASE ENTER THE CORRECT DIE", "invalidnumber");
+        }
+    }
+ }
+
+ function rollDie (sidesOfDie) {       
+    let roll = Math.floor (Math.random () * sidesOfDie) + 1;
+    console.log ("    Die roll : " + roll);       
+    // return numberToBeat -= roll;
+    return roll;
+}
+
+function playDiceGame () {
+    let numberToBeat = Math.floor (Math.random() * 50) + 50;
+    let count = 0;
+    while (numberToBeat > 0)  { 
+        colorLog ("Number to Beat : " + numberToBeat, "beatnumber");
+        count++;
+        let numberOfSides; 
+        numberOfSides = getInput();
+        colorLog ("    " + numberOfSides + " sided die was used", "roll die");
+        numberToBeat -= rollDie (numberOfSides);
+    }
+    winOrLose (numberToBeat, count);
+}
+
+function winOrLose (numberToBeat, count) {
+    if (numberToBeat < 0) {
+        colorLog ("        Sorry, you lose after " + count + " tries...", "lose");
+    }
+    else {
+    colorLog ("        Congrats, you WIN " + "in " + count + " tries!!!", "win");
+    }
+}  
 
 function colorLog(message, color) {
 
@@ -34,40 +80,4 @@ function colorLog(message, color) {
     }
 
     console.log("%c" + message, "color:" + color);
-}
-
-function getInput(){
-    let isValid = false;
-    while(!isValid){
-        let input = prompt("Please pick your die, either 4, 6, 8, 10, 12 or 20 : ");
-        if(input === "4" || input === "6" || input === "8" || input === "10" || input === "12" || input === "20"){
-            isvalid = true;
-            return input;
-        }
-        else 
-        { colorLog ("          PLEASE ENTER THE CORRECT DIE", "invalidnumber");
-        }
-    }
- }
-
-while (numberToBeat > 0)  { 
-    colorLog ("Number to Beat : " + numberToBeat, "beatnumber");
-    count++;
-    let numberOfSides; 
-    numberOfSides = getInput();
-    colorLog ("    " + numberOfSides + " sided die was used", "roll die");
-    rollDie (numberOfSides);
-
-    function rollDie (sidesOfDie) {       
-        let roll = Math.floor (Math.random () * sidesOfDie) + 1;
-        console.log ("    Die roll : " + roll);       
-        return numberToBeat -= roll;
-    }
-}
-
-if (numberToBeat < 0) {
-    colorLog ("        Sorry, you lose after " + count + " tries...", "lose");
-}
-else {
-    colorLog ("        Congrats, you WIN " + "in " + count + " tries!!!", "win");
 }
