@@ -7,8 +7,10 @@
 // If the result ends up to be 0, then the player "wins" the game.
 // If it's less than 0, then he "loses" the game...
 
+// Call one Main function for the entire game.
 playDiceGame();
 
+// Get input from user but limit choices to 4, 6, 8, 10, 12, and 20 faced die. 
 function getInput() {
     let isValid = false;
     while(!isValid){
@@ -23,12 +25,14 @@ function getInput() {
     }
  }
 
+ // Function to return roll of die result.
  function rollDie (sidesOfDie) {       
     let roll = Math.floor (Math.random () * sidesOfDie) + 1;
     console.log ("    Die roll : " + roll);       
     return roll;
 }
 
+// This is the main game loop.
 function playDiceGame () {
     let numberToBeat = Math.floor (Math.random() * 50) + 50;
     let count = 0;
@@ -43,6 +47,7 @@ function playDiceGame () {
     winOrLose (numberToBeat, count);
 }
 
+// Announces the result of the game.
 function winOrLose (numberToBeat, count) {
     if (numberToBeat < 0) {
         colorLog ("        Sorry, you lose after " + count + " tries...", "lose");
@@ -52,8 +57,10 @@ function winOrLose (numberToBeat, count) {
     }
 }  
 
+// Add colors to various text inputs and outputs to make things more legible.
+// Found this on the net and adapted for my use.  All credits go to code creator. 
 function colorLog(message, color) {
-
+    
     color = color || "black";
 
     switch (color) {
