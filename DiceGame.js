@@ -5,7 +5,7 @@
 // The result of the roll is subtracted from the initial chosen number.
 // If result is > 0, then he's prompted to roll another die.
 // If the result ends up to be 0, then the player "wins" the game.
-// If it's less than 0, then he "loses" the game...
+// If it's less than 0 (the player overshoots), then he "loses" the game...
 
 // Call one Main function for the entire game.
 playDiceGame();
@@ -32,7 +32,7 @@ function getInput() {
     return roll;
 }
 
-// This is the main game loop.
+// This is the Main game loop.
 function playDiceGame () {
     let numberToBeat = Math.floor (Math.random() * 50) + 50;
     let count = 0;
@@ -50,7 +50,7 @@ function playDiceGame () {
 // Announces the result of the game.
 function winOrLose (numberToBeat, count) {
     if (numberToBeat < 0) {
-        colorLog ("        Sorry, you lose after " + count + " tries...", "lose");
+        colorLog ("        Sorry, you LOSE after " + count + " tries...", "lose");
     }
     else {
     colorLog ("        Congrats, you WIN " + "in " + count + " tries!!!", "win");
